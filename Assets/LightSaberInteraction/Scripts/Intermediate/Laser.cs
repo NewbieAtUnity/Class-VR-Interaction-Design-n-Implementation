@@ -5,6 +5,7 @@ namespace LightSaber.intermediate
 {
     public class Laser : MonoBehaviour
     {
+        // SerializeField allows us to assign variables through the inspector
         [SerializeField] private GameObject laserRoot;
         [SerializeField] private AudioClip laserOnSfx;
         [SerializeField] private AudioClip laserOffSfx;
@@ -44,8 +45,10 @@ namespace LightSaber.intermediate
 
         public void ActivateLaser()
         {
+            // Enable laserRoot gameobject
             laserRoot.SetActive(true);
 
+            //false if you do not want to make the sound loop, true if you want the sound to loop
             PlayLaserSound(laserOnSfx, false);
             PlayLaserSound(laserHumSfx, true);
         }
@@ -58,6 +61,7 @@ namespace LightSaber.intermediate
 
         private void PlayLaserSound(AudioClip sound, bool loop)
         {
+            // if loop bool is true assign sound to audio source and play audio source
             if (loop)
             {
                 audioSource.clip =sound;
@@ -65,6 +69,7 @@ namespace LightSaber.intermediate
             }
             else
             {
+                // else stop the current audio source sound and play the sound once
                 audioSource.Stop();
                 audioSource.PlayOneShot(sound);
             }
